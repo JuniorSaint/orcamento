@@ -1,0 +1,39 @@
+#main-div {
+  margin: auto;
+  width: 90%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#main-card {
+}
+
+.address-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#card-address {
+margin-top: 5px;
+width: 100%;
+}
+
+.btn-tel {
+  margin-top: 20px;
+}
+.btn-tel:nth-child(2) {
+  margin-left: 10px;
+}
+
+#btn-voltar {
+  margin-left: 10px;
+}
+
+.margin-to{
+  margin-top: 15px;
+}
+
+#tel-card{
+  width: 100%;
+}

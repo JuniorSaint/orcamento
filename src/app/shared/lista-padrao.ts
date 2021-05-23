@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { BotaoConfirmaComponent } from './botao-confirma/botao-confirma.component';
+
 import { CrudServico } from 'src/app/shared/crud-servico';
 
 @Component({
@@ -64,26 +64,26 @@ import { CrudServico } from 'src/app/shared/crud-servico';
 
     delete(id: any): void {
 
-        const dialogRef = this.dialog.open(BotaoConfirmaComponent, {
-            panelClass: 'myapp-no-padding-dialog',
-            data: {
-                mensagem: 'Deseja realmente excluir?',
-                botao1: 'Excluir'
-            },
-        });
+        // const dialogRef = this.dialog.open(BotaoConfirmaComponent, {
+        //     panelClass: 'myapp-no-padding-dialog',
+        //     data: {
+        //         mensagem: 'Deseja realmente excluir?',
+        //         botao1: 'Excluir'
+        //     },
+        // });
 
-        dialogRef.afterClosed().subscribe(
-            result => {
-                if (result) {
+        // dialogRef.afterClosed().subscribe(
+        //     result => {
+        //         if (result) {
                     this.service.delete(id)
                         .subscribe(
                             () => this.snackBar.open('Apagado com sucesso', '', { duration: 2000 }),
                             error => this.snackBar.open(`Erro ao deletar ${error}`, '', { duration: 2000 }),
                             () => this.ngOnInit()
                         );
-                }
-            }
-        );
+        //         }
+        //     }
+        // );
     }
 
      ngOnDestroy() {

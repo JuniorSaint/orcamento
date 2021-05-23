@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { InterfacePadrao } from './interface-padrao';
 import { CrudServico } from './crud-servico';
-import { BotaoConfirmaComponent } from './botao-confirma/botao-confirma.component';
+
 
 
 @Component({
@@ -63,22 +63,12 @@ export abstract class FormularioPadrao<T extends InterfacePadrao> implements Aft
   //  ********************** Função do Botão Voltar   **********************
 
   voltar() {
+    
 
-    const dialogRef = this.dialog.open(BotaoConfirmaComponent, {
-      panelClass: 'myapp-no-padding-dialog',
-      data: {
-        mensagem: 'Deseja realmente voltar lista?',
-        botao1: 'Voltar'
-      },
-    });
-
-    dialogRef.afterClosed().subscribe(
-      result => {
-        if (result) {
-          this.router.navigate([`/${this.rotaVoltar}`]);
-        }
-      }
-    );
+    
+          this.router.navigate([`${this.rotaVoltar}`]);
+    
+     
 
   }
 

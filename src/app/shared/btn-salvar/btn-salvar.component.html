@@ -1,0 +1,19 @@
+<!-- Botao Salvar  -->
+<p-button 
+(click)="onSubmit()"
+id="btn-salvar"
+pTooltip="Salvar documento"
+[disabled]="formulario.invalid" 
+[label]="txtBtn" 
+icon="pi pi-save"
+> 
+</p-button>
+
+<!-- botao Voltar  -->
+<p-button 
+(click)="voltar()" 
+id="btn-voltar"
+style="margin-left: 10px;" 
+pTooltip="Volta a lista"
+label="Voltar" icon="pi pi-backward">
+</p-button>

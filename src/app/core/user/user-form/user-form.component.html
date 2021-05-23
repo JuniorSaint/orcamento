@@ -1,0 +1,76 @@
+<main id="main">
+  <div id="container">
+    <form [formGroup]="formulario">
+
+      <p-card>
+
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col">
+            <label for="name">Nome</label>
+            <input id="name" type="text" pInputText formControlName="name">
+          </div>
+          <div class="p-field p-col">
+            <label for="email">Email</label>
+            <input id="email" type="text" pInputText formControlName="email">
+          </div>
+        </div>
+
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col">
+            <label for="password">Senha</label>
+            <p-password id="password" formControlName="password" [toggleMask]="true"></p-password>
+          </div>
+          <div class="p-field p-col">
+            <label for="repPassword">Confirmação da Senha</label>
+            <p-password id="repPassword" formControlName="repPassword" [toggleMask]="true"></p-password>
+          </div>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+
+          <div class="p-field p-col">
+            <label for="password">Qual o tipo de usuário</label>
+            <p-dropdown 
+              [options]="typeUser" 
+              placeholder="Selecione o tipo"
+              optionLabel="tipU" 
+              optionValue="value"
+              [showClear]="true"
+              formControlName="userKind">
+            </p-dropdown>
+          </div>
+          <div class="p-field p-col">
+            <label for="password">Usuário esta ativo</label>
+            <p-dropdown
+              [options]="activeUser"  
+              placeholder="Usuário Ativo" 
+              formControlName="active"
+              optionLabel="acUser" 
+              [showClear]="true"
+              optionValue="value">
+            </p-dropdown>
+          </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+          <p-button 
+         
+          (click)="onSubmit()"
+          pTooltip="Salvar documento"
+          [disabled]="formulario.invalid" [label]="txtBtn" icon="pi pi-save">
+         </p-button>
+        
+         <p-button
+          (click)="voltar()" 
+          id="btn-voltar"
+          pTooltip="Volta a lista"
+          label="Voltar" icon="pi pi-backward">
+        </p-button>
+        
+        </ng-template>
+
+      </p-card>      
+
+    </form>
+  </div>
+
+</main>
