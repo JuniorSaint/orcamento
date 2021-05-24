@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'client', loadChildren: () => import('./core/client/client-shared/client.module').then(mod => mod.ClientModule) },
   { path: 'typeService', loadChildren: () => import('./core/type-service/type-service-shared/type-service.module').then(mod => mod.TypeServiceModule) },
   { path: 'user', loadChildren: () => import('./core/user/user-shared/user.module').then(mod => mod.UserModule) },
-  { path: 'bedgeting', loadChildren: () => import('./core/budgeting/budgeting-shared/budgeting.module').then(mod => mod.BudgetingModule) },
+  { path: 'budgeting', loadChildren: () => import('./core/budgeting/budgeting-shared/budgeting.module').then(mod => mod.BudgetingModule) },
 
 
   { path: '', component: PageNotFoundComponent },

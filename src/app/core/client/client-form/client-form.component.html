@@ -46,24 +46,13 @@
 
                 <div class="p-field p-col-12 p-md-3">
 
-                  <button
-                    pButton 
-                    pRipple 
-                    type="button" 
-                    icon="pi pi-plus"
-                    class="p-button-rounded p-button-success btn-tel" 
-                    (click)="newPhone()" 
+                  <button pButton pRipple type="button" icon="pi pi-plus"
+                    class="p-button-rounded p-button-success btn-tel" (click)="newPhone()"
                     pTooltip="Adicione novo número">
                   </button>
-                  
-                  <button 
-                    pButton 
-                    pRipple 
-                    type="button" 
-                    (click)="removeTelefone(i)" 
-                    pTooltip="Apague o telefone"
-                    *ngIf="phoneFormControl.length > 1"
-                    icon="pi pi-trash" 
+
+                  <button pButton pRipple type="button" (click)="removeTelefone(i)" pTooltip="Apague o telefone"
+                    *ngIf="phoneFormControl.length > 1" icon="pi pi-trash"
                     class="p-button-rounded p-button-danger btn-tel">
                   </button>
                 </div>
@@ -122,24 +111,16 @@
       </form>
 
       <!-- botoes do radapé  -->
-   
+
       <ng-template pTemplate="footer">
-        <p-button 
-          (click)="onSubmit()"
-          pTooltip="Salvar documento"
-          [disabled]="formulario.invalid" 
-          [label]="txtBtn" 
-          icon="pi pi-save"> 
+        <p-button (click)="onSubmit()" pTooltip="Salvar documento" [disabled]="formulario.invalid" [label]="txtBtn"
+          icon="pi pi-save">
         </p-button>
-        
-        <p-button (click)="voltar()" 
-          pTooltip="Volta a lista"
-          label="Voltar" 
-          icon="pi pi-backward"
-          id="btn-voltar">
-          
+
+        <p-button (click)="voltar()" pTooltip="Volta a lista" label="Voltar" icon="pi pi-backward" id="btn-voltar">
+
         </p-button>
-      
+
       </ng-template>
     </p-card>
   </div>

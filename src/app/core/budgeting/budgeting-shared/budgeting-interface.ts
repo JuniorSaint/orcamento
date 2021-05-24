@@ -1,4 +1,6 @@
-export interface IBudgeting{
+import { InterfacePadrao } from 'src/app/shared/interface-padrao';
+
+export interface IBudgeting extends InterfacePadrao{
 
     _id: string;
     _idClient: string;
@@ -12,7 +14,9 @@ export interface IBudgeting{
 }
 
 export interface IService{
-    tipoServico: string,
-    descricao: string,
-    valorUnitario: number,
+    typeService: string,
+    valueUnit: number,
+    amount: number,
+    valueAmount: number
+
   };
