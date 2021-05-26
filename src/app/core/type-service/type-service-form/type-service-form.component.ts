@@ -59,7 +59,7 @@ export class TypeServiceFormComponent extends FormularioPadrao<ITypeService> imp
 
   salvar() {
 
-    this.servico.create(this.formValue)
+    this.service.create(this.formValue)
       .subscribe(
         () => this.snackBar.open('Formulário salvo com sucesso', '', { duration: 2000 }),
         error => this.snackBar.open('Erro ao salvar o formulário', error, { duration: 2000 }),
