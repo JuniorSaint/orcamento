@@ -7,9 +7,9 @@ import { TypeServiceService } from './../../type-service/type-service-shared/typ
 import { ClientService } from './../../client/client-shared/client.service';
 import { BudgetingService } from './../budgeting-shared/budgeting.service';
 import { FormularioPadrao } from 'src/app/shared/formulario-padrao';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, from } from 'rxjs';
 import { IBudgeting } from '../budgeting-shared/budgeting-interface';
-
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-budgeting-form',
@@ -20,12 +20,12 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
   formUpdate!: IBudgeting;
   subscriptionClient!: Subscription;
   subscriptionTypeService!: Subscription;
-  valorTotalServico = 0;
+  valueTotalUnit: number = 0;
   clients$!: IClient[];
   typeServices$!: ITypeService[];
   client$!: IClient;
   formBuilder: any;
-  @ViewChild('idClient') el!: ElementRef
+
 
   constructor(
     protected injector: Injector,
@@ -38,13 +38,11 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
     this.subscriptionClient = this.serviceClient.getByIdName().subscribe(
       (data) => this.clients$ = data,
       erro => console.error(erro),
-      () => console.log(this.clients$)
     )   // busca do banco apenas nome e id para popular dropdown cliente
 
     this.subscriptionTypeService = this.serviceType.get().subscribe(
       (data) => this.typeServices$ = data,
       erro => console.error(erro),
-      () => console.log(this.typeServices$)
     )
 
     this.formulario = this.fb.group({
@@ -89,8 +87,8 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
 
   setExistingService(service: IService[]): FormArray {
     const formArray = new FormArray([]);
-    service.forEach( ser => {
-        formArray.push(this.fb.group({
+    service.forEach(ser => {
+      formArray.push(this.fb.group({
         typeService: ser.typeService,
         valueUnit: ser.valueUnit,
         amount: ser.amount,
@@ -100,7 +98,7 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
     return formArray;
   }
 
-  clientBudgeting( ) {
+  clientBudgeting() {
     let id = this.formulario.get('_idClient')?.value
     this.serviceClient.getByID(id).subscribe(dado => this.client$ = dado)
   }
@@ -110,17 +108,18 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
       typeService: [null, Validators.required],
       amount: [null, Validators.required],
       valueUnit: [null, Validators.required],
-      valueAmount: [(null)]
+      valueAmount: [null]
     });
   }
 
-// Adicionar Array de serviço
+  // Adicionar Array de serviço
   adcionarServico(): void {
     this.ServiceFormControl.push(this.adicionarServicoFormulario());
   }
 
   removerServico(i: number) {
     this.ServiceFormControl.removeAt(i);
+    this.totalUnitario();
   }
 
   get ServiceFormControl() {
@@ -128,8 +127,14 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
   }
 
   totalUnitario() {
+    let myArray = this.formulario.get('service')?.value;
 
+    for( let item of myArray ){
+      item.valueAmount = item.valueUnit * item.amount;
 
+      console.log(`quant: ${item.amount}, vlr: ${item.valueUnit}, sendo resultado: ${item.valueAmount}`);
+    }
+ 
   }
 
   ngOnDestroy() {
@@ -137,3 +142,8 @@ export class BudgetingFormComponent extends FormularioPadrao<IBudgeting> impleme
     this.subscriptionTypeService.unsubscribe();
   }
 }
+
+// typeService: string,
+// valueUnit: number,
+// amount: number,
+// valueAmount: number

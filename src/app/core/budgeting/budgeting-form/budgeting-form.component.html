@@ -8,15 +8,23 @@
                         <label for="basic">Cliente</label>
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                            <p-dropdown [options]="clients$" (ngModelChange)="clientBudgeting()"
-                                formControlName="_idClient" optionLabel="name" optionValue="_id"></p-dropdown>
+                            <p-dropdown
+                                [options]="clients$"
+                                (ngModelChange)="clientBudgeting()"
+                                formControlName="_idClient"
+                                optionLabel="name"
+                                optionValue="_id">
+                            </p-dropdown>
                         </div>
                     </div>
                     <div class="p-col-12 p-md-3">
                         <label for="basic">Data Entrada</label>
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
-                            <p-calendar formControlName="dateEnter" dateFormat="dd/mm/yy" inputId="basic">
+                            <p-calendar
+                                formControlName="dateEnter"
+                                dateFormat="dd/mm/yy"
+                                inputId="basic">
                             </p-calendar>
                         </div>
                     </div>
@@ -24,7 +32,10 @@
                         <label for="basic">Previsão de Entrega</label>
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
-                            <p-calendar formControlName="DateDelivery" dateFormat="dd/mm/yy" inputId="basic">
+                            <p-calendar
+                                formControlName="DateDelivery"
+                                dateFormat="dd/mm/yy"
+                                inputId="basic">
                             </p-calendar>
                         </div>
                     </div>
@@ -57,8 +68,8 @@
                             </div>
                             <div *ngFor="
                                 let forServico of ServiceFormControl.controls;
-                                let i = index
-                                " [formGroupName]="i">
+                                let i = index"
+                                [formGroupName]="i">
                                 <div class="p-grid p-fluid">
                                     <div class="p-field p-col-12 p-md-1">
                                         <p-inputNumber formControlName="amount">
@@ -66,35 +77,57 @@
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-3">
-                                        <p-dropdown [options]="typeServices$" formControlName="typeService"
-                                            optionLabel="typeService"></p-dropdown>
+                                        <p-dropdown
+                                            [options]="typeServices$"
+                                            formControlName="typeService"
+                                            optionLabel="typeService">
+                                        </p-dropdown>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-2">
-                                        <p-inputNumber formControlName="valueUnit" mode="currency" currency="BRL"
+                                        <p-inputNumber
+                                            formControlName="valueUnit"
+                                            mode="currency"
+                                            currency="BRL"
+                                            (onBlur)="totalUnitario()"
                                             locale="pt-BR">
                                         </p-inputNumber>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-2">
-                                        <p-inputNumber formControlName="valueAmount" mode="currency" currency="BRL"
+                                        <p-inputNumber
+                                            formControlName="valueAmount"
+                                            mode="currency"
+                                            currency="BRL"
                                             locale="pt-BR">
                                         </p-inputNumber>
                                     </div>
 
                                     <div class="p-field p-col-12 p-md-2">
-                                        <button (click)="adcionarServico()" pButton pRipple type="button"
-                                            icon="pi pi-tags" class="p-button-rounded"></button>
+                                        <button
+                                            (click)="adcionarServico()"
+                                            pButton
+                                            pRipple
+                                            type="button"
+                                            icon="pi pi-tags"
+                                            class="p-button-rounded">
+                                        </button>
 
-                                        <button style="margin-left: 10px;" (click)="removerServico(i)"
-                                            *ngIf="ServiceFormControl.length > 1" pButton pRipple type="button"
-                                            icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                                        <button
+                                            style="margin-left: 10px;"
+                                            (click)="removerServico(i)"
+                                            *ngIf="ServiceFormControl.length > 1"
+                                            pButton
+                                            pRipple
+                                            type="button"
+                                            icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger">
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </p-card>
-
                 </div>
             </form>
         </p-card>

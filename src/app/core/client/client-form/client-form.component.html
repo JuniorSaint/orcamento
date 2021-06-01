@@ -5,52 +5,93 @@
         <div class="card">
 
           <div class="p-fluid p-formgrid p-grid">
-            <div class="p-field p-col-12 p-md-5">
+
+            <div class="p-field p-col-12 p-md-4">
               <label for="name">Nome</label>
-              <input id="name" type="text" formControlName="name" pInputText>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                pInputText>
             </div>
             <div class="p-field p-col-12 p-md-4">
               <label for="email">Email</label>
-              <input id="email" type="text" formControlName="email" pInputText>
+              <input
+                id="email"
+                type="text"
+                formControlName="email"
+                pInputText>
             </div>
-            <div class="p-field p-col-12 p-md-3">
+            <div class="p-field p-col-12 p-md-4">
               <label for="cpf">CPF/CNPJ</label>
-              <input id="cpf" mask="000.000.000-00||00.000.000/0000-00" type="text" formControlName="cpf" pInputText>
+              <input
+                id="cpf"
+                mask="000.000.000-00||00.000.000/0000-00"
+                type="text"
+                formControlName="cpf"
+                pInputText>
             </div>
 
             <!-- Lista de Telefones  -->
             <p-card formArrayName="phone" id="tel-card">
               <h3>Telefone</h3>
               <div *ngFor="
-            let forServico of phoneFormControl.controls;
-            let i = index" [formGroupName]="i" class="address-div">
+                 let forServico of phoneFormControl.controls;
+                 let i = index"
+                [formGroupName]="i"
+                class="address-div">
 
                 <div class="p-field p-col-12 p-md-3">
                   <label for="phone">Telefone</label>
-                  <input id="phone" mask="(000) 0000-0000 || (000) 00000-0000" formControlName="phoneNumber" type="text"
+                  <input
+                    id="phone"
+                    mask="(000) 0000-0000 || (000) 00000-0000"
+                    formControlName="phoneNumber"
+                    type="text"
                     pInputText>
                 </div>
 
                 <div class="p-field p-col-12 p-md-3">
                   <label for="phoneType">Tipo</label>
-                  <p-dropdown inputId="phoneType" [options]="phoneType" formControlName="phoneType"
-                    placeholder="Selecione" optionLabel="name"></p-dropdown>
-                </div>
-
-                <div class="p-field p-col-12 p-md-3">
-                  <label for="social">Social</label>
-                  <p-dropdown inputId="social" [options]="social" formControlName="social" placeholder="Select"
+                  <p-dropdown
+                    inputId="phoneType"
+                    [options]="phoneType"
+                    formControlName="phoneType"
+                    optionValue="value"
+                    placeholder="Selecione"
                     optionLabel="name">
                   </p-dropdown>
                 </div>
 
                 <div class="p-field p-col-12 p-md-3">
-                  <button pButton pRipple type="button" icon="pi pi-plus"
-                    class="p-button-rounded p-button-success btn-tel" (click)="newPhone()"
+                  <label for="social">Social</label>
+                  <p-dropdown
+                    inputId="social"
+                    [options]="social"
+                    formControlName="social"
+                    placeholder="Select"
+                    optionValue="value"
+                    optionLabel="name">
+                  </p-dropdown>
+                </div>
+
+                <div class="p-field p-col-12 p-md-3">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-plus"
+                    class="p-button-rounded p-button-success btn-tel"
+                    (click)="newPhone()"
                     pTooltip="Adicione novo número">
                   </button>
 
-                  <button pButton pRipple type="button" (click)="removeTelefone(i)" pTooltip="Apague o telefone"
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    (click)="removeTelefone(i)"
+                    pTooltip="Apaga o telefone"
                     *ngIf="phoneFormControl.length > 1" icon="pi pi-trash"
                     class="p-button-rounded p-button-danger btn-tel">
                   </button>
@@ -64,33 +105,57 @@
               <div formGroupName="address">
                 <div class="address-div">
                   <div class="p-field p-col-12 p-md-6">
-                    <label for="street">Rua, número</label>
+                    <label for="street">Complemento</label>
                     <input id="street" formControlName="street" type="text" pInputText>
                   </div>
                   <div class="p-field p-col-12 p-md-3">
                     <label for="district">Bairro</label>
-                    <input id="district" formControlName="district" type="text" pInputText>
+                    <input
+                      id="district"
+                      formControlName="district"
+                      type="text"
+                      pInputText>
                   </div>
                   <div class="p-field p-col-12 p-md-3">
-                    <label for="complement">Complemento</label>
-                    <input id="complement" formControlName="complement" type="text" pInputText>
+                    <label
+                      for="complement">Complemento
+                    </label>
+                    <input
+                      id="complement"
+                      formControlName="complement"
+                      type="text"
+                      pInputText>
                   </div>
 
                 </div>
                 <div class="address-div">
                   <div class="p-field p-col-12 p-md-6">
                     <label for="city">Cidade</label>
-                    <input id="city" formControlName="city" type="text" pInputText>
+                    <input
+                      id="city"
+                      formControlName="city"
+                      type="text"
+                      pInputText>
                   </div>
                   <div class="p-field p-col-12 p-md-3">
                     <label for="UF">Estado</label>
-                    <p-dropdown inputId="UF" formControlName="UF" [options]="UF" placeholder="Selecione"
+                    <p-dropdown
+                      inputId="UF"
+                      formControlName="UF"
+                      [options]="UF"
+                      placeholder="Selecione"
+                      optionValue="sigla"
                       optionLabel="sigla">
                     </p-dropdown>
                   </div>
                   <div class="p-field p-col-12 p-md-3">
                     <label for="zipCode">CEP</label>
-                    <input id="zipCode" type="text" formControlName="zipCode" pInputText>
+                    <input
+                      id="zipCode"
+                      type="text"
+                      formControlName="zipCode"
+                      mask="00.000-000"
+                      pInputText>
                   </div>
                 </div>
               </div>
@@ -98,7 +163,12 @@
             <!-- Campo Observação  -->
             <div class="p-field p-col-12 margin-to">
               <label for="note">Observação</label>
-              <textarea id="note" type="text" rows="2" formControlName="note" pInputTextarea></textarea>
+              <textarea
+                id="note"
+                type="text"
+                rows="2"
+                formControlName="note"
+                pInputTextarea></textarea>
             </div>
           </div>
         </div>
@@ -106,12 +176,20 @@
 
       <!-- botoes do radapé  -->
       <ng-template pTemplate="footer">
-        <p-button (click)="onSubmit()" pTooltip="Salvar documento" [disabled]="formulario.invalid" [label]="txtBtn"
+        <p-button
+          (click)="onSubmit()"
+          pTooltip="Salvar documento"
+          [disabled]="formulario.invalid"
+          [label]="txtBtn"
           icon="pi pi-save">
         </p-button>
 
-        <p-button (click)="btnVoltar()" pTooltip="Volta a lista" label="Voltar" icon="pi pi-backward" id="btn-voltar">
-
+        <p-button
+          (click)="btnVoltar()"
+          pTooltip="Volta a lista"
+          label="Voltar"
+          icon="pi pi-backward"
+          id="btn-voltar">
         </p-button>
 
       </ng-template>

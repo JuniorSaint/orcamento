@@ -7,9 +7,16 @@
                         <p>lista de clinte</p>
                     </div>
                     <div>
-                        <button style="margin-top: 10px; background-color: #E06716;" pButton type="button"
-                            (click)="novo()" label="Novo" icon="pi pi-plus" class="p-button-sm"
-                            pTooltip="Criar novo formulário"></button>
+                        <button
+                            style="margin-top: 10px; background-color: #E06716;"
+                            pButton
+                            type="button"
+                            (click)="novo()"
+                            label="Novo"
+                            icon="pi pi-plus"
+                            class="p-button-sm"
+                            pTooltip="Criar novo formulário">
+                        </button>
                     </div>
                 </div>
             </ng-template>
@@ -22,13 +29,25 @@
                         </div>
                         <br>
                         <ng-template pTemplate="footer">
-                            <button pButton pRipple type="button" icon="pi pi-pencil" (click)="edit(item._id)"
-                                class="p-button-rounded p-button-success" pTooltip="Editar formulário"
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                icon="pi pi-pencil"
+                                (click)="edit(item._id)"
+                                class="p-button-rounded p-button-success"
+                                pTooltip="Editar formulário"
                                 style="background-color: #33F5FF; color: black;">
                             </button>
 
-                            <button pButton (click)="delete(item._id)" pRipple type="button" icon="pi pi-trash"
-                                class="p-button-rounded p-button-danger" style="margin-left: 5px;"
+                            <button
+                                pButton
+                                (click)="delete(item._id)"
+                                pRipple
+                                type="button"
+                                icon="pi pi-trash"
+                                class="p-button-rounded p-button-danger"
+                                style="margin-left: 5px;"
                                 pTooltip="Apagar formulário">
                             </button>
                         </ng-template>

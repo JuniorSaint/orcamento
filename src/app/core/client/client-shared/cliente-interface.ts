@@ -17,7 +17,7 @@ export interface IClient extends IPadrao {
 }
 export interface IPhone {
     _id?: string,
-    phoneType?: string,
+    phoneType: string,
     phoneNumber: number,
-    social?: string
+    social: string
 }

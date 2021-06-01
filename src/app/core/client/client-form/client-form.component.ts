@@ -15,13 +15,13 @@ export class ClientFormComponent extends FormularioPadrao<IClient> implements On
   UF!: any
 
   phoneType = [
-    { name: 'fixo' },
-    { name: 'Celular' }
+    { name: 'Fixo', value: 'fixo' },
+    { name: 'Celular', value: 'celular' }
   ]
   social = [
-    { name: 'Whatsapp' },
-    { name: 'Telegram' },
-    { name: 'Signal' }
+    { name: 'Whatsapp', value: 'whatsapp' },
+    { name: 'Telegram', value: 'telegram' },
+    { name: 'Signal', value: 'signal' }
   ]
 
   constructor(
