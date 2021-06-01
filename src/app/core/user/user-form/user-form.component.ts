@@ -1,27 +1,16 @@
-
-import { Subscription } from 'rxjs';
-
-import { Component, OnInit, Injector, OnDestroy } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-
-
 import { UserService } from '../user-shared/user.service';
 import { FormularioPadrao } from 'src/app/shared/formulario-padrao';
 import { IUser } from '../user-shared/user-interface';
-
-
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent extends FormularioPadrao<IUser> implements OnInit, OnDestroy {
-
+export class UserFormComponent extends FormularioPadrao<IUser> implements OnInit {
   formUpdate!: IUser;
-
-
   emailUser$!: any;
-  emalMatch = true;
 
   typeUser = [
     { tipU: "Administrador", value: "administrador" },
@@ -40,12 +29,7 @@ export class UserFormComponent extends FormularioPadrao<IUser> implements OnInit
     super(injector, 'user', servico)
   }
 
-  // ********************* NG on Init  ********************
-
   ngOnInit(): void {
-
-    this.popularForm();  // função de popular o forumulário
-
     this.formulario = this.fb.group({
       _id: [],
       name: [null, Validators.required],
@@ -56,12 +40,12 @@ export class UserFormComponent extends FormularioPadrao<IUser> implements OnInit
       userKind: [null, Validators.required]
     }, { validator: [this.matchingPasswords] },
     );
+
+    this.popularForm();
   }
 
-  // ********************* Comparação de passaword  ********************
-
+  // Comparação de passaword 
   matchingPasswords(group: FormGroup) {
-
     const password = group.get('password')?.value ?? '';
     const repPassword = group.get('repPassword')?.value ?? '';
 
@@ -72,33 +56,26 @@ export class UserFormComponent extends FormularioPadrao<IUser> implements OnInit
     }
   }
 
-  // ********************* Função de Popular Formulário  ********************
-
   popularForm() {
     if (this.urlAtiva !== 'new') {
       this.servico.getByID(this.urlAtiva)
         .subscribe(
           dados => this.formUpdate = dados,
           error => console.log(error),
-          () => {
-            this.formulario.patchValue({
-              _id: this.formUpdate._id,
-              name: this.formUpdate.name,
-              email: this.formUpdate.email,
-              password: this.formUpdate.password,
-              repPassword: this.formUpdate.repPassword,
-              active: this.formUpdate.active,
-              userKind: this.formUpdate.userKind,
-            }
-            )
-          }
+          () => this.patchFormUpdate(this.formUpdate)
         )
     }
   }
 
-  // ***********************  NgOnDestroy ****************"
-
-  ngOnDestroy() {
-
+  patchFormUpdate(formUpdate: IUser) {
+    this.formulario.patchValue({
+      _id: this.formUpdate._id,
+      name: this.formUpdate.name,
+      email: this.formUpdate.email,
+      password: this.formUpdate.password,
+      repPassword: this.formUpdate.repPassword,
+      active: this.formUpdate.active,
+      userKind: this.formUpdate.userKind,
+    })
   }
 }

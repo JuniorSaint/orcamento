@@ -4,10 +4,6 @@
     margin-top: 30px;
 }
 
-#secondary-div{
-
-}
-
 #first-line{
     display: flex;
     flex-direction: row;
@@ -23,9 +19,13 @@ justify-content: center;
 #list-service{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.tabela-lar{
-    width: 380px;
+.service-list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }

@@ -1,15 +1,10 @@
-import { InterfacePadrao } from "src/app/shared/interface-padrao";
-
-export interface IClient extends InterfacePadrao {
-
-
-
-
+import { IPadrao } from "src/app/shared/interface-padrao";
+export interface IClient extends IPadrao {
     _id?: string;
     name: string;
     cpf: number;
     email: string;
-    phone: Phone[],
+    phone: IPhone[],
     address: {
         street: string,
         district: string,
@@ -20,10 +15,9 @@ export interface IClient extends InterfacePadrao {
     },
     note: string;
 }
-
-
-export interface Phone{ 
-  _id?: string,
-  phoneType: string, 
-  phoneNumber: number, 
-  social: string }
+export interface IPhone {
+    _id?: string,
+    phoneType?: string,
+    phoneNumber: number,
+    social?: string
+}

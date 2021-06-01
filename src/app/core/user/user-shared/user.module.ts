@@ -1,6 +1,6 @@
-import { PrimengModule } from 'src/app/shared/primeng.module';
+import { BotaoConfirmaComponent } from './../../../shared/botao-confirma/botao-confirma.component';
 import { NgModule } from '@angular/core';
-
+import { PrimengModule } from 'src/app/shared/primeng.module';
 import { UserListComponent } from './../user-list/user-list.component';
 import { UserFormComponent } from './../user-form/user-form.component';
 import { CommonModule } from '@angular/common';
@@ -11,7 +11,8 @@ import { MaterialModule } from 'src/app/shared/material.module';
 @NgModule({
   declarations: [
       UserFormComponent,
-      UserListComponent
+      UserListComponent,
+      BotaoConfirmaComponent
   ],
   imports: [
     CommonModule,

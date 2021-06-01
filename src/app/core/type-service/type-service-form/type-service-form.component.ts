@@ -14,7 +14,6 @@ import { TypeServiceService } from '../type-service-shared/type-service.service'
 export class TypeServiceFormComponent extends FormularioPadrao<ITypeService> implements OnInit {
 
   @ViewChild(TypeServiceListComponent) listComponent!: TypeServiceListComponent;
-
   formUpdate!: ITypeService;
 
   constructor(
@@ -23,14 +22,13 @@ export class TypeServiceFormComponent extends FormularioPadrao<ITypeService> imp
   ) { super(injector, 'typeService/new', service) }
 
   ngOnInit(): void {
-    this.popularForm();
-
     this.formulario = this.fb.group({
       _id: [null],
       typeService: [null, Validators.required],
-      descriptionService: [null, Validators.required]
+      descriptionService: [null, Validators.required]  
     })
 
+    this.popularForm();
   }
 
   popularForm() {
@@ -39,34 +37,30 @@ export class TypeServiceFormComponent extends FormularioPadrao<ITypeService> imp
         .subscribe(
           dados => this.formUpdate = dados,
           error => console.log(error),
-          () => {
-            this.formulario.patchValue({
-              _id: this.formUpdate.id,
-              typeService: this.formUpdate.typeService,
-              descriptionService: this.formUpdate.descriptionService,
-            }
-            )
-          })
+          () => { this.patchFormUpdate(this.formUpdate) }
+          )
+    }}
+
+    patchFormUpdate(formUpdate: ITypeService) {
+      this.formulario.patchValue({
+        _id: this.formUpdate._id,
+        typeService: this.formUpdate.typeService,
+        descriptionService: this.formUpdate.descriptionService,
+      })
     }
 
-  }
   clearFields() {
     this.formulario.reset();
     this.router.navigate(['/typeService/new']);
   }
 
-
-
   salvar() {
-
     this.service.create(this.formValue)
       .subscribe(
         () => this.snackBar.open('Formulário salvo com sucesso', '', { duration: 2000 }),
         error => this.snackBar.open('Erro ao salvar o formulário', error, { duration: 2000 }),
         () => this.ngOnInit()
       )
-
     this.listComponent.recicleNgOn();
   }
-
 }

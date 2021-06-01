@@ -1,14 +1,9 @@
-import { IEstado } from 'src/app/shared/estado.service';
-
-import { ClientService } from './../client-shared/client.service';
-import { IClient } from './../client-shared/cliente-interface';
 import { Component, OnInit, Injector } from '@angular/core';
+import { ClientService } from './../client-shared/client.service';
+import { IClient, IPhone } from './../client-shared/cliente-interface';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormularioPadrao } from 'src/app/shared/formulario-padrao';
 import { EstadosService } from 'src/app/shared/estado.service'
-import { ConfirmationService } from 'primeng/api';
-
-
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
@@ -23,7 +18,7 @@ export class ClientFormComponent extends FormularioPadrao<IClient> implements On
     { name: 'fixo' },
     { name: 'Celular' }
   ]
-  Social = [
+  social = [
     { name: 'Whatsapp' },
     { name: 'Telegram' },
     { name: 'Signal' }
@@ -39,10 +34,7 @@ export class ClientFormComponent extends FormularioPadrao<IClient> implements On
   }
 
   ngOnInit(): void {
-
     this.UF = this.estados.getEstado();  // Pegar lista de Estado para dropdown 
-
-    this.popularForm();  // função de popular o forumulário
 
     this.formulario = this.fb.group({
       _id: [],
@@ -60,11 +52,11 @@ export class ClientFormComponent extends FormularioPadrao<IClient> implements On
       }),
       note: [null],
     });
+
+    this.popularForm();
   }
 
-
-  // ********************* Inicio para adicionar telefone  ********************
-
+  // Inicio para adicionar telefone 
   addPhone(): FormGroup {
     return this.fb.group({
       phoneType: [null],
@@ -72,7 +64,6 @@ export class ClientFormComponent extends FormularioPadrao<IClient> implements On
       social: [null]
     });
   }
-
 
   newPhone(): void {
     this.phoneFormControl.push(this.addPhone());
@@ -86,38 +77,50 @@ export class ClientFormComponent extends FormularioPadrao<IClient> implements On
     return this.formulario.get('phone') as FormArray;
   }
 
-  // ********************* Função de Popular Formulário  ********************
-
+  // Função de Popular Formulário 
   popularForm() {
     if (this.urlAtiva !== 'new') {
       this.servico.getByID(this.urlAtiva)
         .subscribe(
           dados => this.formUpdate = dados,
           error => console.log(error),
-          () => {
-            this.formulario.patchValue({
-              _id: this.formUpdate.id,
-              name: this.formUpdate.name,
-              cpf: this.formUpdate.cpf,
-              email: this.formUpdate.email,
-              // phone: Phone[],
-              address: {
-                street: this.formUpdate.address.street,
-                district: this.formUpdate.address.district,
-                complement: this.formUpdate.address.complement,
-                city: this.formUpdate.address.city,
-                UF: this.formUpdate.address.UF,
-                zipCode: this.formUpdate.address.zipCode,
-              },
-              note: this.formUpdate.note,
-
-            }
-            )
-          })
+          () => this.patchFormUpdate(this.formUpdate)
+        )
     }
-
   }
 
+  patchFormUpdate(formUpdate: IClient) {
+    this.formulario.patchValue({
+      _id: this.formUpdate._id,
+      name: this.formUpdate.name,
+      cpf: this.formUpdate.cpf,
+      email: this.formUpdate.email,
+      phone: this.formUpdate.phone,
+      address: {
+        street: this.formUpdate.address.street,
+        district: this.formUpdate.address.district,
+        complement: this.formUpdate.address.complement,
+        city: this.formUpdate.address.city,
+        UF: this.formUpdate.address.UF,
+        zipCode: this.formUpdate.address.zipCode,
+      },
+      note: this.formUpdate.note,
+    });
+    this.formulario.setControl('phone', this.setExistPhone(formUpdate.phone));
+  }
 
-
+  setExistPhone(phoneSet: IPhone[]): FormArray{
+    const formArray = new FormArray([]);
+    phoneSet.forEach( phone => {
+     formArray.push( this.fb.group({
+        phoneType: phone.phoneType,
+        phoneNumber: phone.phoneNumber,
+        social: phone.social
+      }));
+    });
+    return formArray;
+  }
+  
 }
+
+

@@ -1,3 +1,4 @@
+import { BotaoConfirmaComponent } from './shared/botao-confirma/botao-confirma.component';
 
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { HeaderComponent } from './core/header/header.component';
@@ -16,6 +17,7 @@ registerLocaleData( ptBr );
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
+import { SharedModule } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MaterialModule } from './shared/material.module';
     AppRoutingModule,
     PrimengModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   providers: [ {  provide: LOCALE_ID, useValue: 'pt-BR'  } ],
   bootstrap: [AppComponent]

@@ -1,7 +1,6 @@
-import { InterfacePadrao } from 'src/app/shared/interface-padrao';
+import { IPadrao } from 'src/app/shared/interface-padrao';
 
-export interface IBudgeting extends InterfacePadrao{
-
+export interface IBudgeting extends IPadrao{
     _id: string;
     _idClient: string;
     dateEnter: Date;

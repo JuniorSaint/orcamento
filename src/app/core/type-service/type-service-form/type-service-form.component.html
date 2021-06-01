@@ -2,7 +2,7 @@
     <div id="main-div">
         <p-card id="main-card">
             <form [formGroup]="formulario">
-                <p-card >
+                <p-card>
                     <h2>{{ pageTitle }}</h2>
                     <div class="p-formgroup-inline">
                         <div class="p-field">
@@ -16,9 +16,11 @@
                                 placeholder="Descrição do Serviço...">
                         </div>
                         <div>
-                        <button pButton pRipple [disabled]="formulario.invalid" (click)="onSubmit()" type="button" label="{{ txtBtn }}"></button>
-                        <button pButton pRipple style="margin-left: 5px;"  (click)="clearFields()" type="button" label="Limpar"></button>
-                    </div>
+                            <button pButton pRipple [disabled]="formulario.invalid" (click)="onSubmit()" type="button"
+                                label="{{ txtBtn }}"></button>
+                            <button pButton pRipple style="margin-left: 5px;" (click)="clearFields()" type="button"
+                                label="Limpar"></button>
+                        </div>
                     </div>
                 </p-card>
             </form>

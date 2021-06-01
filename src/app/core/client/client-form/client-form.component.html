@@ -39,13 +39,12 @@
 
                 <div class="p-field p-col-12 p-md-3">
                   <label for="social">Social</label>
-                  <p-dropdown inputId="social" [options]="Social" formControlName="social" placeholder="Select"
+                  <p-dropdown inputId="social" [options]="social" formControlName="social" placeholder="Select"
                     optionLabel="name">
                   </p-dropdown>
                 </div>
 
                 <div class="p-field p-col-12 p-md-3">
-
                   <button pButton pRipple type="button" icon="pi pi-plus"
                     class="p-button-rounded p-button-success btn-tel" (click)="newPhone()"
                     pTooltip="Adicione novo número">
@@ -57,10 +56,7 @@
                   </button>
                 </div>
               </div>
-
             </p-card>
-
-
 
             <!-- Parte do cadastramento do endereço  -->
             <p-card id="card-address">
@@ -104,20 +100,17 @@
               <label for="note">Observação</label>
               <textarea id="note" type="text" rows="2" formControlName="note" pInputTextarea></textarea>
             </div>
-
           </div>
         </div>
-
       </form>
 
       <!-- botoes do radapé  -->
-
       <ng-template pTemplate="footer">
         <p-button (click)="onSubmit()" pTooltip="Salvar documento" [disabled]="formulario.invalid" [label]="txtBtn"
           icon="pi pi-save">
         </p-button>
 
-        <p-button (click)="voltar()" pTooltip="Volta a lista" label="Voltar" icon="pi pi-backward" id="btn-voltar">
+        <p-button (click)="btnVoltar()" pTooltip="Volta a lista" label="Voltar" icon="pi pi-backward" id="btn-voltar">
 
         </p-button>
 

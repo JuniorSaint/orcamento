@@ -1,9 +1,5 @@
-import { InterfacePadrao } from "src/app/shared/interface-padrao";
-
-
-
-export interface IUser extends InterfacePadrao{
-
+import { IPadrao } from "src/app/shared/interface-padrao";
+export interface IUser extends IPadrao{
   _id?: string,
   name: string,
   email: string,

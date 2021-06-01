@@ -1,9 +1,7 @@
 <main id="main">
   <div id="container">
     <form [formGroup]="formulario">
-
       <p-card>
-
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col">
             <label for="name">Nome</label>
@@ -26,7 +24,6 @@
           </div>
         </div>
         <div class="p-fluid p-formgrid p-grid">
-
           <div class="p-field p-col">
             <label for="password">Qual o tipo de usuário</label>
             <p-dropdown 
@@ -50,27 +47,21 @@
             </p-dropdown>
           </div>
         </div>
-
         <ng-template pTemplate="footer">
-          <p-button 
-         
+          <p-button          
           (click)="onSubmit()"
           pTooltip="Salvar documento"
           [disabled]="formulario.invalid" [label]="txtBtn" icon="pi pi-save">
          </p-button>
         
          <p-button
-          (click)="voltar()" 
+          (click)="btnVoltar()" 
           id="btn-voltar"
           pTooltip="Volta a lista"
           label="Voltar" icon="pi pi-backward">
-        </p-button>
-        
+        </p-button>        
         </ng-template>
-
       </p-card>      
-
     </form>
   </div>
-
 </main>

@@ -4,7 +4,6 @@
             <ng-template pTemplate="header">
                <div>
                    <div>
-
                    </div>
                    <div>
                     <button style="margin-top: 10px;" pTooltip="Criar novo formulario" pButton type="button" (click)="novo()" label="Novo"
@@ -12,11 +11,9 @@
                 </div>
                </div>
             </ng-template>
-
             <p-table [value]="dataSource$" styleClass="p-datatable-striped">
                 <ng-template pTemplate="header">
                     <tr>
-
                         <th>Name</th>
                         <th>Email</th>
                         <th>Ativo</th>
@@ -26,7 +23,6 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
-
                         <td>{{product.name}}</td>
                         <td>{{product.email}}</td>
                         <td>{{(product.active) ? 'Ativo': 'Inativo'}}</td>
@@ -54,7 +50,6 @@
                             pTooltip="Apagar formulário"
                             >
                       </button>
-
                         </td>
                     </tr>
                 </ng-template>

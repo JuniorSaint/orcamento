@@ -1,20 +1,14 @@
+import { Component, OnInit, Injector } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Injector, Input, Output, ViewChild, OnDestroy } from '@angular/core';
-
 import { TypeServiceService } from './../type-service-shared/type-service.service';
 import { ListaPadrao } from 'src/app/shared/lista-padrao';
 import { ITypeService } from '../type-service-shared/type-service-interface';
-
-@Input()
-
 @Component({
   selector: 'app-type-service-list',
   templateUrl: './type-service-list.component.html',
   styleUrls: ['./type-service-list.component.scss']
 })
-export class TypeServiceListComponent extends ListaPadrao<ITypeService> implements OnInit, OnDestroy {
-
-
+export class TypeServiceListComponent extends ListaPadrao<ITypeService> implements OnInit {
   subscription2!: Subscription;
 
   constructor(
@@ -24,26 +18,16 @@ export class TypeServiceListComponent extends ListaPadrao<ITypeService> implemen
 
   ngOnInit(): void {
     this.CompleteList();
-
   }
-
-  // ********************** routa para editar  **********************
 
   editForm(id: string) {
     this.router.navigate([`typeService/${id}/edit`]);
   }
 
-
-  // ********************** Reiniciar o ngOnInit após inclusão  **********************
-
+  //  Reiniciar o ngOnInit após inclusão  
   recicleNgOn() {
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
   }
-
-ngOnDestroy(){
-
-}
-
 }

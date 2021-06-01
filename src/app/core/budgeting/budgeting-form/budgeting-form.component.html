@@ -1,8 +1,6 @@
 <div id="main-div">
     <div id="secondary-div">
         <p-card>
-
-
             <form [formGroup]="formulario">
                 <div id="first-line">
 
@@ -10,11 +8,10 @@
                         <label for="basic">Cliente</label>
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                            <p-dropdown [options]="clients$" (onBlur)="clientBudgeting('60a6e1060fa0a35e63cf2fdb')"
+                            <p-dropdown [options]="clients$" (ngModelChange)="clientBudgeting()"
                                 formControlName="_idClient" optionLabel="name" optionValue="_id"></p-dropdown>
                         </div>
                     </div>
-
                     <div class="p-col-12 p-md-3">
                         <label for="basic">Data Entrada</label>
                         <div class="p-inputgroup">
@@ -23,7 +20,6 @@
                             </p-calendar>
                         </div>
                     </div>
-
                     <div class="p-col-12 p-md-3">
                         <label for="basic">Previsão de Entrega</label>
                         <div class="p-inputgroup">
@@ -35,7 +31,6 @@
                 </div>
                 <div>
                     <p-card>
-
                         <div class="p-grid">
                             <div class="p-col">
                                 <div class="box">
@@ -51,59 +46,55 @@
                                     {{ tel?.phoneNumber }} - {{ tel?.social }} <br>
                                 </div>
                             </div>
-
                         </div>
-
-
-
                     </p-card>
 
                     <!--  lista de serviços  -->
-                    <div formArrayName="service">
-
                     <p-card>
-                        <div id="header-list">
-                            Relação de Serviços
-                        </div>
-                        <div *ngFor="
-                        let forServico of ArrayFormControl.controls;
-                        let i = index
-                      " [formGroupName]="i">
-
-                            <div id="list-service">
-                                <div>
+                        <div formArrayName="service">
+                            <div id="header-list">
+                                Relação de Serviços
+                            </div>
+                            <div *ngFor="
+                                let forServico of ServiceFormControl.controls;
+                                let i = index
+                                " [formGroupName]="i">
+                                <div class="p-grid p-fluid">
                                     <div class="p-field p-col-12 p-md-1">
-                                        <p-inputNumber formControlName="amount" inputId="minmax" inputId="minmax"
-                                            mode="decimal" [min]="0" [max]="100">
+                                        <p-inputNumber formControlName="amount">
                                         </p-inputNumber>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="p-field p-col-12 p-md-2">
+
+                                    <div class="p-field p-col-12 p-md-3">
                                         <p-dropdown [options]="typeServices$" formControlName="typeService"
                                             optionLabel="typeService"></p-dropdown>
                                     </div>
-                                </div>
-                                <div>
+
                                     <div class="p-field p-col-12 p-md-2">
                                         <p-inputNumber formControlName="valueUnit" mode="currency" currency="BRL"
                                             locale="pt-BR">
                                         </p-inputNumber>
                                     </div>
 
-                                </div>
-                                <div>
-                                    <!-- <div class="p-field p-col-12 p-md-2">
-                                        <p-inputNumber formControlName="valueAmout" mode="currency" currency="BRL"
+                                    <div class="p-field p-col-12 p-md-2">
+                                        <p-inputNumber formControlName="valueAmount" mode="currency" currency="BRL"
                                             locale="pt-BR">
                                         </p-inputNumber>
-                                    </div> -->
+                                    </div>
+
+                                    <div class="p-field p-col-12 p-md-2">
+                                        <button (click)="adcionarServico()" pButton pRipple type="button"
+                                            icon="pi pi-tags" class="p-button-rounded"></button>
+
+                                        <button style="margin-left: 10px;" (click)="removerServico(i)"
+                                            *ngIf="ServiceFormControl.length > 1" pButton pRipple type="button"
+                                            icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </p-card>
-                    </div>
+
                 </div>
             </form>
         </p-card>
