@@ -1,31 +1,52 @@
-#main-div{
-    width: 80%;
-    margin: auto;
-    margin-top: 30px;
+@import "../../../shared/style/variable";
+@import "../../../shared/style/button";
+@import "../../../shared/style/mixins";
+@import "../../../shared/style/reset";
+
+main {
+  width: 900px;
+  margin: auto;
+  margin-top: 30px;
+  #main-card{
+      label{
+          padding-left: 10px
+      }
+    #header-card{
+      @extend %header-card;
+      justify-content: center;
+    }
+    #first-line{
+        @extend %flex-complete;
+        margin-bottom: 15px;
+    }
+    #list-service{
+        #list-service-header{
+            display: flex;
+            justify-content: center
+        }
+        #list-service-details{
+            @extend %flex-complete;
+            #amount{
+                width: 50px;
+                height: 40px;
+                padding: 5px;
+            }
+            #valueUnit{
+                width: 150px;
+                height: 40px;
+                padding: 5px;      
+            }
+        }
+    }
+  }
 }
 
-#first-line{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-#header-list{
-display: flex;
-flex-direction: row;
+#header-list {
+@extend %header-card;
+height: 30px;
 justify-content: center;
 }
 
-#list-service{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
 
-.service-list{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
+
+

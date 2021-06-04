@@ -1,13 +1,14 @@
-#header-card{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: #16D6E0;
-}
+@import "../../../shared/style/variable";
+@import "../../../shared/style/button";
+@import "../../../shared/style/mixins";
+@import "../../../shared/style/reset";
 
 #main-div{
-  width: 90%;
+  max-width: 900px;
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
+  #header-card{
+    @extend %header-card;
+  }
 }

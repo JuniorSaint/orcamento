@@ -1,8 +1,20 @@
-<main id="main">
+<main>
   <div id="container">
     <form [formGroup]="formulario">
       <p-card>
-        <div class="p-fluid p-formgrid p-grid">
+        <ng-template pTemplate="header">
+          <div id="header-card">
+            <div>
+              <p id="p-title">{{ pageTitle }}</p>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </ng-template>
+
+
+        <div id="form-first-line" class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col">
             <label for="name">Nome</label>
             <input id="name" type="text" pInputText formControlName="name">
@@ -23,13 +35,14 @@
             <p-password id="repPassword" formControlName="repPassword" [toggleMask]="true"></p-password>
           </div>
         </div>
+
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col">
             <label for="password">Qual o tipo de usuário</label>
-            <p-dropdown 
-              [options]="typeUser" 
+            <p-dropdown
+              [options]="typeUser"
               placeholder="Selecione o tipo"
-              optionLabel="tipU" 
+              optionLabel="tipU"
               optionValue="value"
               [showClear]="true"
               formControlName="userKind">
@@ -38,30 +51,35 @@
           <div class="p-field p-col">
             <label for="password">Usuário esta ativo</label>
             <p-dropdown
-              [options]="activeUser"  
-              placeholder="Usuário Ativo" 
+              [options]="activeUser"
+              placeholder="Usuário Ativo"
               formControlName="active"
-              optionLabel="acUser" 
+              optionLabel="acUser"
               [showClear]="true"
               optionValue="value">
             </p-dropdown>
           </div>
         </div>
         <ng-template pTemplate="footer">
-          <p-button          
-          (click)="onSubmit()"
-          pTooltip="Salvar documento"
-          [disabled]="formulario.invalid" [label]="txtBtn" icon="pi pi-save">
-         </p-button>
-        
-         <p-button
-          (click)="btnVoltar()" 
-          id="btn-voltar"
-          pTooltip="Volta a lista"
-          label="Voltar" icon="pi pi-backward">
-        </p-button>        
+          <button
+            class="btn-save"
+            (click)="onSubmit()"
+            pTooltip="Salvar documento"
+            [disabled]="formulario.invalid"
+            icon="pi pi-save">
+            {{ txtBtn }}
+          </button>
+
+          <button
+            class="btn-return"
+            (click)="btnVoltar()"
+            id="btn-voltar"
+            pTooltip="Volta a lista"
+            icon="pi pi-backward">
+            Voltar
+          </button>
         </ng-template>
-      </p-card>      
+      </p-card>
     </form>
   </div>
 </main>
